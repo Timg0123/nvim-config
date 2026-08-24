@@ -1,0 +1,1 @@
+-- TODO: Show a winbar as long as there are now tabs open
