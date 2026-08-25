@@ -21,4 +21,3 @@ autocmd("FileType", {
         vim.treesitter.start()
     end,
 })
-
