@@ -11,7 +11,12 @@ local color = "#ababab"
 vim.api.nvim_set_hl(0, "LightGreyBold", { fg = color, bold = true })
 vim.api.nvim_set_hl(0, "LightGrey", { fg = color })
 
-vim.api.nvim_set_hl(0, "Statusline", { bg = "NONE" })
+-- Yellow Border
+local palette = require("util.palette")
+vim.api.nvim_set_hl(0, "YellowBorder", { bg = palette.get("autumnYellow", "#e5c07b") })
+
+
+vim.api.nvim_set_hl(0, "Statusline", { bg = "#1F1F28" })
 local function hl(group, text)
     return string.format("%%#%s#%s%%*", group, text)
 end
@@ -72,12 +77,15 @@ end
 Statusline = {}
 function Statusline.active()
     return table.concat {
+        hl("YellowBorder", " "),
         " ", hl("LightGreyBold", get_mode()),
-        "   ", hl("LightGrey", "%t"),
         "   ", hl("LightGrey", get_lsp_name()),
+        "   ", hl("LightGrey", "%t"),
+        " ", hl("LightGrey", "%m"),
         "%=",
         get_diagnostics(), " ",
         get_fileicon(), "  ",
+        hl("YellowBorder", " "),
     }
 end
 
