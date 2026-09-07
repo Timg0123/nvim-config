@@ -13,19 +13,9 @@ opt.hlsearch = false
 opt.clipboard:append("unnamedplus")
 opt.showmode = false
 opt.signcolumn = "yes"
-
--- line-numbers
 opt.number = true
 opt.relativenumber = true
 opt.numberwidth = 8
-_G.centered_lnum = function()
-  local width = math.max(2, #tostring(vim.fn.line("$")))
-  local lnum = vim.v.relnum == 0 and vim.v.lnum or vim.v.relnum
-  local str = tostring(lnum)
-  return string.rep(" ", width - #str) .. str
-end
-vim.opt.statuscolumn = "%s%=%{v:lua.centered_lnum()}%=   "
-
 
 vim.cmd.filetype("plugin indent on")
 

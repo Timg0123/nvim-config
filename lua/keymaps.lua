@@ -54,6 +54,7 @@ vim.keymap.set("x", "S", function()
 end)
 
 -- Development
+keymap("n", "<C-e>o", "<cmd>e $MYVIMRC<CR>")
 keymap("n", "<leader>r", function () -- Reload current File
     vim.cmd("silent write")
     local file = vim.fn.expand("%:p")

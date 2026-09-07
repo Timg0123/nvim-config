@@ -15,9 +15,8 @@ vim.pack.add({
     { src = "'https://github.com/nvim-mini/mini.pairs" },
 })
 
-
 require("mini.pairs").setup()
-require('nvim-treesitter').install { "python" }
+require('nvim-treesitter').install { "python", "lua" }
 require("ibl").setup()
 require("mini.icons").setup({
     lsp = {

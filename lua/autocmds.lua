@@ -13,7 +13,7 @@ autocmd("TextYankPost", {
 
 -- Enable Treesitter for filetypes
 autocmd("FileType", {
-    pattern = { "python" }, -- Add more later
+    pattern = { "python", "lua" }, -- Add more later
     callback = function()
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'

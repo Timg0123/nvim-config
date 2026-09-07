@@ -7,19 +7,29 @@ local config = {
         hint = "",
     }
 }
-local color = "#ababab"
-vim.api.nvim_set_hl(0, "LightGreyBold", { fg = color, bold = true })
-vim.api.nvim_set_hl(0, "LightGrey", { fg = color })
+local nvim_set_hl = vim.api.nvim_set_hl
+local nvim_get_hl = vim.api.nvim_get_hl
 
--- Yellow Border
-local palette = require("util.palette")
-vim.api.nvim_set_hl(0, "YellowBorder", { bg = palette.get("autumnYellow", "#e5c07b") })
+-- Get Default Colors
+local p_menu = nvim_get_hl(0, { name = "Pmenu" })
+local diagnostic_warn = nvim_get_hl(0, { name = "DiagnosticWarn"})
+local normal = nvim_get_hl(0, { name = "Normal" })
+
+nvim_set_hl(0, "LightGreyBold", { fg = normal.fg, bold = true })
+nvim_set_hl(0, "LightGrey", { fg = normal.fg })
+nvim_set_hl(0, "YellowBorder", { fg = diagnostic_warn.fg })
+nvim_set_hl(0, "Statusline", { bg = p_menu.bg })
+-- Modes
+nvim_set_hl(0, "NormalMode", { fg = "#D27E99" })
+nvim_set_hl(0, "InsertMode", { fg = "#76946A" })
+nvim_set_hl(0, "VisualMode", { fg = "#7E9CD8" })
+nvim_set_hl(0, "CommandMode", { fg = "#957FB8" })
 
 
-vim.api.nvim_set_hl(0, "Statusline", { bg = "#1F1F28" })
 local function hl(group, text)
     return string.format("%%#%s#%s%%*", group, text)
 end
+
 -- Items for Statusline
 local function get_fileicon()
     local extension = vim.bo.filetype
@@ -38,14 +48,23 @@ local function get_mode()
         t = "TERMINAL",
     }
     local mode = modes[vim.fn.mode()] or vim.fn.mode()
-    return mode
+    if mode == "NORMAL" then
+        return hl("NormalMode", mode)
+    elseif mode == "INSERT" then
+        return hl("InsertMode", mode)
+    elseif mode == "VISUAL" or mode == "V-LINE" or mode == "V-BLOCK" then
+        return hl("VisualMode", mode)
+    elseif mode == "COMMAND" or mode == "TERMINAL" then
+        return hl("CommandMode", mode)
+    end
 end
 local function get_lsp_name()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
 
     if #clients ~= 0 then
         return " " .. clients[1].name
-    else return ""
+    else
+        return ""
     end
 end
 local function get_diagnostics()
@@ -77,15 +96,15 @@ end
 Statusline = {}
 function Statusline.active()
     return table.concat {
-        hl("YellowBorder", " "),
-        " ", hl("LightGreyBold", get_mode()),
+        hl("YellowBorder", "▊"),
+        " ", hl("sakuraPink", get_mode()),
         "   ", hl("LightGrey", get_lsp_name()),
         "   ", hl("LightGrey", "%t"),
         " ", hl("LightGrey", "%m"),
         "%=",
         get_diagnostics(), " ",
         get_fileicon(), "  ",
-        hl("YellowBorder", " "),
+        hl("YellowBorder", "▊"),
     }
 end
 
