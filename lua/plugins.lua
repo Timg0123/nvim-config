@@ -4,7 +4,7 @@ vim.pack.add({
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/rebelot/kanagawa.nvim" },
     -- syntax highliting
-    { src = "nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
     -- autocompletion
     { src = "https://github.com/saghen/blink.lib" },
@@ -12,7 +12,7 @@ vim.pack.add({
     { src = "https://github.com/xzbdmw/colorful-menu.nvim" },
     { src = "https://github.com/nvim-mini/mini.icons" },
     -- autopairs
-    { src = "'https://github.com/nvim-mini/mini.pairs" },
+    { src = "https://github.com/nvim-mini/mini.pairs" },
 })
 
 require("mini.pairs").setup()
