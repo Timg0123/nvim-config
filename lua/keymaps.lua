@@ -4,7 +4,8 @@ vim.g.mapleader = " "
 -- keymap("n", "<space>", "<Nop>")
 
 keymap("i", "jk", "<esc>", { desc = "Escape to Normal mode" })
-keymap("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
+keymap("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+keymap("n", "<leader>w", "<cmd>write<cr>", { desc = "Write Buffer" })
 
 -- Nvim-Tree --
 keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle File-Tree" })
