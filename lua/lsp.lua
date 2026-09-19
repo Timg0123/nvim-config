@@ -1,8 +1,9 @@
 require("mason").setup()
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup { -- list :help lspconfig-all
     ensure_installed = {
         "lua_ls",
-        "pyright"
+        "pyright",
+        "jdtls"
     },
 
     automatic_enable = true,
@@ -17,7 +18,7 @@ vim.lsp.config("lua_ls", {
                 library = { vim.env.VIMRUNTIME },
             },
             diagnostics = {
-                globals = { "vim" },
+                globals = { "vim", "hl" },
             }
         }
     }

@@ -18,3 +18,6 @@ keymap("n", "<leader>h", "<C-w>h", { desc = "Focus Left Window" })
 keymap("n", "<leader>l", "<C-w>l", { desc = "Focus Right Window" })
 keymap("n", "<leader>k", "<C-w>k", { desc = "Focus Upper Window" })
 keymap("n", "<leader>j", "<C-w>j", { desc = "Focus Lower Window" })
+
+-- LSP diagnostics --
+keymap("n", "<leader>d", function() vim.diagnostic.open_float() end, { desc = "Open Diagnostics Float" })
