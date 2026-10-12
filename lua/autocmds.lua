@@ -1,9 +1,15 @@
 local autocmd = vim.api.nvim_create_autocmd
 
--- Write on Save
+-- Format on Save
 autocmd("BufWritePre", {
     pattern = "*",
     callback = function()
-        vim.lsp.buf.format({ async = false })
-    end
+        local clients = vim.lsp.get_clients({
+            bufnr = 0,
+            method = "textDocument/formatting",
+        })
+        if #clients < 0 then
+            vim.lsp.buf.format({ async = false })
+        end
+    end,
 })
